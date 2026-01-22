@@ -1,0 +1,154 @@
+<section id="experience" class="experience-section">
+  <!-- Section Background Effects -->
+  <div class="experience-bg">
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="timeline-connector"></div>
+  </div>
+
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <div class="section-badge">
+        <span class="badge-icon">💼</span>
+        <span class="badge-text">Experience</span>
+      </div>
+      <h2 class="section-title">
+        <span class="title-text">Professional Journey</span>
+        <div class="title-underline">
+          <div class="underline-segment"></div>
+          <div class="underline-dot"></div>
+          <div class="underline-segment"></div>
+        </div>
+      </h2>
+      <p class="section-subtitle">Building expertise through hands-on experience</p>
+    </div>
+
+    <!-- Experience Timeline -->
+    <div class="experience-timeline">
+      <div *ngFor="let exp of experiences; let i = index; let isLast = last" class="timeline-item"
+           [class.left]="i % 2 === 0" [class.right]="i % 2 === 1">
+        <!-- Timeline Node -->
+        <div class="timeline-node" [style.animation-delay.ms]="i * 200">
+          <div class="node-core"></div>
+          <div class="node-ring"></div>
+          <div class="node-pulse"></div>
+        </div>
+
+        <!-- Experience Card -->
+        <div class="experience-card" [style.animation-delay.ms]="i * 300">
+          <!-- Card Header -->
+          <div class="card-header">
+            <div class="company-logo">
+              <div class="logo-placeholder">
+                <mat-icon>{{ getCompanyIcon(exp.company) }}</mat-icon>
+              </div>
+            </div>
+            <div class="job-info">
+              <h3 class="position">{{ exp.position }}</h3>
+              <div class="company-meta">
+                <span class="company-name">{{ exp.company }}</span>
+                <span class="company-location">
+                  <mat-icon>location_on</mat-icon>
+                  {{ exp.location }}
+                </span>
+              </div>
+            </div>
+            <div class="job-duration">
+              <span class="duration">{{ exp.duration }}</span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-content">
+            <p class="job-description">{{ exp.description }}</p>
+
+            <!-- Achievements -->
+            <div class="achievements-section">
+              <h4 class="achievements-title">
+                <mat-icon>emoji_events</mat-icon>
+                Key Achievements
+              </h4>
+              <ul class="achievements-list">
+                <li *ngFor="let achievement of exp.achievements; let j = index"
+                    class="achievement-item"
+                    [style.animation-delay.ms]="(i * 300) + (j * 100)">
+                  <div class="achievement-icon">
+                    <mat-icon>check_circle</mat-icon>
+                  </div>
+                  <span class="achievement-text">{{ achievement }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Technologies -->
+            <div class="technologies-section">
+              <h4 class="technologies-title">
+                <mat-icon>build</mat-icon>
+                Technologies Used
+              </h4>
+              <div class="technologies-grid">
+                <span *ngFor="let tech of exp.technologies; let k = index"
+                      class="tech-chip"
+                      [style.animation-delay.ms]="(i * 300) + (k * 50)">
+                  <span class="tech-text">{{ tech }}</span>
+                  <div class="tech-glow"></div>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Footer -->
+          <div class="card-footer">
+            <div class="card-decoration">
+              <div class="decoration-line"></div>
+              <div class="decoration-sparkle" *ngFor="let sparkle of [1,2,3]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Stats -->
+    <div class="experience-stats">
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-icon">
+            <mat-icon>work</mat-icon>
+          </div>
+          <div class="stat-content">
+            <span class="stat-number">{{ experiences.length }}</span>
+            <span class="stat-label">Positions</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">
+            <mat-icon>schedule</mat-icon>
+          </div>
+          <div class="stat-content">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">
+            <mat-icon>business</mat-icon>
+          </div>
+          <div class="stat-content">
+            <span class="stat-number">{{ getUniqueCompanies(experiences) }}</span>
+            <span class="stat-label">Companies</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">
+            <mat-icon>code</mat-icon>
+          </div>
+          <div class="stat-content">
+            <span class="stat-number">{{ getTotalTechnologies(experiences) }}</span>
+            <span class="stat-label">Technologies</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

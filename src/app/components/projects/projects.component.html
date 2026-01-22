@@ -1,0 +1,26 @@
+<section id="projects" class="projects-section">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      <div *ngFor="let project of projects; let i = index" class="project-card">
+        <div class="card-header">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <div class="project-links">
+            <a mat-icon-button [href]="project.githubUrl" target="_blank" rel="noopener">
+              <mat-icon>code</mat-icon>
+            </a>
+            <a mat-icon-button [href]="project.liveUrl" target="_blank" rel="noopener">
+              <mat-icon>launch</mat-icon>
+            </a>
+          </div>
+        </div>
+        <p class="project-description">{{ project.description }}</p>
+        <div class="project-technologies">
+          <mat-chip-set>
+            <mat-chip *ngFor="let tech of project.technologies">{{ tech }}</mat-chip>
+          </mat-chip-set>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

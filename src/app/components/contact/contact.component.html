@@ -1,0 +1,54 @@
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h2 class="section-title">{{ data?.title }}</h2>
+    <p class="section-description">{{ data?.description }}</p>
+
+    <div class="contact-content">
+      <div class="contact-form">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="Your Name">
+            <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="your.email@example.com">
+            <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+              Please enter a valid email
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Message</mat-label>
+            <textarea matInput formControlName="message" rows="5" placeholder="Your message..."></textarea>
+            <mat-error *ngIf="contactForm.get('message')?.hasError('required')">
+              Message is required
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid" class="submit-btn">
+            Send Message
+            <mat-icon>send</mat-icon>
+          </button>
+        </form>
+      </div>
+
+      <div class="social-links">
+        <h3>Connect with me</h3>
+        <div class="social-grid">
+          <a *ngFor="let social of data?.socialLinks" [href]="social.url" target="_blank" rel="noopener" class="social-link">
+            <mat-icon>{{ getSocialIcon(social.platform) }}</mat-icon>
+            <span>{{ social.platform }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

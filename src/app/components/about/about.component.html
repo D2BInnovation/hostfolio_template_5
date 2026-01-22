@@ -1,0 +1,153 @@
+<section id="about" class="about-section">
+  <!-- Section Background Effects -->
+  <div class="about-bg">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="floating-elements">
+      <div class="float-element elem-1"></div>
+      <div class="float-element elem-2"></div>
+      <div class="float-element elem-3"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <div class="section-badge">
+        <span class="badge-icon">👨‍💻</span>
+        <span class="badge-text">About Me</span>
+      </div>
+      <h2 class="section-title">
+        <span class="title-text">Get to know me</span>
+        <div class="title-decoration">
+          <div class="decoration-line"></div>
+          <div class="decoration-dot"></div>
+          <div class="decoration-line"></div>
+        </div>
+      </h2>
+      <p class="section-subtitle">Passionate developer crafting digital experiences</p>
+    </div>
+
+    <div class="about-content">
+      <!-- Description Card -->
+      <div class="description-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <mat-icon>person</mat-icon>
+          </div>
+          <h3 class="card-title">My Story</h3>
+        </div>
+        <div class="card-content">
+          <div class="description-text">
+            <p *ngFor="let para of data?.description; let i = index" [class.highlight]="i === 0">{{ para }}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="contact-grid">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <mat-icon>email</mat-icon>
+              </div>
+              <div class="contact-details">
+                <span class="contact-label">Email</span>
+                <a [href]="'mailto:' + data?.personal?.email" class="contact-value">{{ data?.personal?.email }}</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <mat-icon>phone</mat-icon>
+              </div>
+              <div class="contact-details">
+                <span class="contact-label">Phone</span>
+                <span class="contact-value">{{ data?.personal?.phone }}</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <mat-icon>location_on</mat-icon>
+              </div>
+              <div class="contact-details">
+                <span class="contact-label">Location</span>
+                <span class="contact-value">{{ data?.personal?.location }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Card -->
+      <div class="skills-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <mat-icon>code</mat-icon>
+          </div>
+          <h3 class="card-title">Skills & Technologies</h3>
+        </div>
+        <div class="card-content">
+          <div class="skills-showcase">
+            <div class="skills-grid">
+              <div *ngFor="let skill of data?.skills; let i = index" class="skill-item"
+                   [style.animation-delay.ms]="i * 100">
+                <div class="skill-chip">
+                  <span class="skill-text">{{ skill }}</span>
+                  <div class="skill-glow"></div>
+                  <div class="skill-particles">
+                    <span class="particle" *ngFor="let p of [1,2,3]"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-number">{{ data?.skills?.length || 0 }}</span>
+            <span class="stat-label">Skills</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievement Highlights -->
+    <div class="achievements-section">
+      <h3 class="achievements-title">Key Achievements</h3>
+      <div class="achievements-grid">
+        <div class="achievement-item">
+          <div class="achievement-icon">
+            <mat-icon>rocket_launch</mat-icon>
+          </div>
+          <div class="achievement-content">
+            <h4>Performance Optimization</h4>
+            <p>Reduced application load times by 40% through advanced optimization techniques</p>
+          </div>
+        </div>
+        <div class="achievement-item">
+          <div class="achievement-icon">
+            <mat-icon>groups</mat-icon>
+          </div>
+          <div class="achievement-content">
+            <h4>Team Leadership</h4>
+            <p>Led development teams and mentored junior developers in best practices</p>
+          </div>
+        </div>
+        <div class="achievement-item">
+          <div class="achievement-icon">
+            <mat-icon>school</mat-icon>
+          </div>
+          <div class="achievement-content">
+            <h4>Continuous Learning</h4>
+            <p>Always staying updated with latest technologies and industry trends</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

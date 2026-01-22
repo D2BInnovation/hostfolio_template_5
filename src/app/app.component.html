@@ -1,0 +1,117 @@
+<div class="app-container">
+  <!-- Particle Background -->
+  <div class="particle-background">
+    <div class="particle" *ngFor="let particle of particles"></div>
+  </div>
+
+  <!-- Animated Gradient Orbs -->
+  <div class="gradient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" [class.scrolled]="scrollY > 50" [class.floating]="scrollY > 100">
+    <div class="nav-container">
+      <div class="brand" [class.animate]="portfolioData.personal?.name">
+        <span class="brand-text">{{ portfolioData.personal?.name }}</span>
+        <div class="brand-glow"></div>
+      </div>
+
+      <div class="nav-links">
+        <button
+          class="nav-link"
+          *ngFor="let item of navItems"
+          [class.active]="activeSection === item.id"
+          (click)="scrollToSection(item.id)"
+          [attr.data-text]="item.label">
+          <span class="link-text">{{ item.label }}</span>
+          <div class="link-underline"></div>
+        </button>
+      </div>
+
+      <button class="mobile-menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="scroll-progress">
+      <div class="progress-bar" [style.width.%]="scrollProgress"></div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" [class.active]="isMenuOpen" (click)="toggleMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.active]="isMenuOpen">
+    <div class="mobile-menu-content">
+      <button
+        class="mobile-nav-link"
+        *ngFor="let item of navItems"
+        (click)="scrollToSection(item.id)">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span>{{ item.label }}</span>
+        <div class="mobile-link-arrow">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Hero Section -->
+    <app-hero *ngIf="portfolioData.hero" [data]="portfolioData" @fadeIn></app-hero>
+
+    <!-- About Section -->
+    <app-about *ngIf="portfolioData.about" [data]="portfolioData.about" @fadeIn></app-about>
+
+    <!-- Experience Section -->
+    <app-experience *ngIf="portfolioData.experience?.length > 0" [experiences]="portfolioData.experience" @fadeIn></app-experience>
+
+    <!-- Projects Section -->
+    <app-projects *ngIf="portfolioData.projects?.length > 0" [projects]="portfolioData.projects" @fadeIn></app-projects>
+
+    <!-- Contact Section -->
+    <app-contact *ngIf="portfolioData.contact" [data]="portfolioData.contact" [personal]="portfolioData.personal" @fadeIn></app-contact>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="footer-name">{{ portfolioData.personal?.name }}</span>
+        <span class="footer-tagline">Crafting Digital Experiences</span>
+      </div>
+      <div class="footer-links">
+        <a *ngFor="let item of navItems" (click)="scrollToSection(item.id)" class="footer-link">
+          {{ item.label }}
+        </a>
+      </div>
+      <div class="footer-social">
+        <a *ngFor="let social of portfolioData.contact?.socialLinks" [href]="social.url" target="_blank" class="social-link">
+          <mat-icon>{{ getSocialIcon(social.platform) }}</mat-icon>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 {{ portfolioData.personal?.name }}. All rights reserved.</p>
+      <div class="footer-decoration">
+        <div class="decoration-line"></div>
+        <div class="decoration-dot"></div>
+        <div class="decoration-line"></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" [class.visible]="scrollY > 300" (click)="scrollToSection('home')">
+    <mat-icon>keyboard_arrow_up</mat-icon>
+  </button>
+</div>
