@@ -30,6 +30,14 @@
           <span class="link-text">{{ item.label }}</span>
           <div class="link-underline"></div>
         </button>
+        <a 
+          *ngIf="portfolioData.resume || portfolioData.personal?.resume"
+          [href]="portfolioData.resume || portfolioData.personal?.resume" 
+          target="_blank" 
+          class="nav-resume-btn">
+          <mat-icon>description</mat-icon>
+          <span>Resume</span>
+        </a>
       </div>
 
       <button class="mobile-menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
@@ -61,6 +69,15 @@
           <mat-icon>arrow_forward</mat-icon>
         </div>
       </button>
+      <a 
+        *ngIf="portfolioData.resume || portfolioData.personal?.resume"
+        [href]="portfolioData.resume || portfolioData.personal?.resume" 
+        target="_blank" 
+        class="mobile-nav-resume-btn"
+        (click)="toggleMenu()">
+        <mat-icon>description</mat-icon>
+        <span>Download Resume</span>
+      </a>
     </div>
   </div>
 
